@@ -1,0 +1,238 @@
+{% extends "layout.html" %}
+{% block sidebar %}
+<ul class="nav nav-sidebar">
+	<li><a href="/">Overview</a></li>
+	<li class="active"><a href="/maps">Map</a></li>
+	<li><a href="/analytics">Analytics</a></li>
+	<li><a href="/setting">Setting</a></li>
+	<li><a href="/about">About us</a></li>
+</ul>
+{% endblock %}
+{% block dashboard %}
+<h2 class="sub-header">Bulb information</h2>
+<span class="dropdown pull-right">
+	<button class="btn btn-default "type="button" data-toggle="dropdown">
+		Select bulb <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+    {% for bulb in list_bulbs %}
+			<li>
+				<a href="#">{{ bulb['name'] }}</a>		
+			</li>
+	{% endfor %}
+	</ul>
+</span>
+<div id="bulb_map" style="
+    width: 605px;
+    height: 605px;
+    position: relative;">
+    <img src="{{ url_for('static', filename='images/bulb_map.png') }}"></img>
+    {% for phone in list_phones %}
+    	{%if phone['location'] == 'l1' %}
+	<div style="
+	    position: absolute;
+	    {% if phone['position-x'] > 0  %}
+	    left: 430px;
+	    {% else %}
+	    left: 220px;
+	    {% endif %}
+	    {% if phone['position-y'] > 0  %}
+	    top: 455px;
+	    {% else %}
+	    top: 230px;
+	    {% endif %}
+	    color: whitesmoke;" class="glyphicon glyphicon-phone">
+	    	[{{ phone['name'] }}]
+	</div>
+		{% endif %}
+	{% endfor %}
+	<div style="
+	    position: absolute;
+	    top: 300px;
+	    left: 300px;
+	    color: gold;" class="glyphicon glyphicon-certificate">
+	    [bulb]
+	</div>
+</div>
+<h2 class="sub-header" >Bulding map</h2>
+<p class="text-warning" >Some function fo this section is underdeveloped</p>
+<div class="btn-control">
+	<span class="dropdown">
+	<button class="btn btn-default "type="button" data-toggle="dropdown">
+		Select location <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+    	<li><a href="#">demo room</a></li>
+	</ul>
+	</span>
+	<span class="dropdown">
+	<button class="btn btn-default "type="button" data-toggle="dropdown">
+		Select bulb <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+	{% for bulb in list_bulbs %}
+			<li>
+				<a href="#building-map">{{ bulb['name'] }}</a>		
+			</li>
+	{% endfor %}
+	</ul>
+	</span>
+	<span class="dropdown">
+	<button class="btn btn-default "type="button" data-toggle="dropdown">
+    Landmark setup <span class="caret"></span></button>
+	<ul class="dropdown-menu" role="menu">
+	{% for x in [0, 1, 2, 3, 4]%}
+    	{% for y in [1, 2, 3, 4]%}
+    		<li><a href="#building-map" class="landmark-selection" landmark-id="landmark-{{x}}{{y}}">landmark-{{x}}{{y}}</a></li>
+    	{% endfor %}
+    {% endfor %}
+  	</ul>
+  	</span>
+  	<span class="pull-right">
+  	<button class="btn btn-default" id="btn-show-rssi">Show rssi map</button>
+  	<button class="btn btn-default" id="btn-hide-rssi">hide rssi map</button>
+  	</span>
+</div>
+<div id="building-map" style="
+	margin: 50px;
+    width: 870px;
+    height: 590px;
+    overflow: hidden;
+    position: relative;">
+	<img src="{{ url_for('static', filename='images/classmap.png') }}"></img>
+	<span id="landmark-01" class="landmark" style="position: absolute; top: 100px; left: 100px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+
+	</span>
+	<span id="landmark-02" class="landmark" style="position: absolute; top: 100px; left: 300px; color: gold;" 
+		class="glyphicon bulb-flow">
+	</span>
+	<span id="landmark-03" class="landmark" style="position: absolute; top: 100px; left: 500px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-04" class="landmark" style="position: absolute; top: 100px; left: 700px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-11" class="landmark" style="position: absolute; top: 200px; left: 100px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-12" class="landmark" style="position: absolute; top: 200px; left: 300px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-13" class="landmark" style="position: absolute; top: 200px; left: 500px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-14" class="landmark" style="position: absolute; top: 200px; left: 700px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-21" class="landmark" style="position: absolute; top: 300px; left: 100px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-22" class="landmark" style="position: absolute; top: 300px; left: 300px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-23" class="landmark" style="position: absolute; top: 300px; left: 500px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-24" class="landmark" style="position: absolute; top: 300px; left: 700px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-31" class="landmark" style="position: absolute; top: 400px; left: 100px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-32" class="landmark" style="position: absolute; top: 400px; left: 300px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-33" class="landmark" style="position: absolute; top: 400px; left: 500px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-34" class="landmark" style="position: absolute; top: 400px; left: 700px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-41" class="landmark" style="position: absolute; top: 500px; left: 100px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-42" class="landmark" style="position: absolute; top: 500px; left: 300px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-43" class="landmark" style="position: absolute; top: 500px; left: 500px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span id="landmark-44" class="landmark" style="position: absolute; top: 500px; left: 700px; color: gold;" 
+		class="glyphicon glyphicon-plus">
+	</span>
+	<span class="rssi" style="
+    height: 500px;
+    background: radial-gradient(rgba(255,0,0,1), rgba(255,0,0,0));
+    width: 500px;
+    position: absolute;
+    top: 300px;
+    right: 300px;
+    opacity: 0.6;
+    border-radius: 250px;"></span>
+    <span class="rssi" style="
+    height: 500px;
+    background: radial-gradient(rgba(255,204,0,1), rgba(255,204,0,0));
+    width: 500px;
+    position: absolute;
+    top: 200px;
+    right: 100px;
+    opacity: 0.6;
+    border-radius: 250px;"></span>
+    <span class="rssi" style="
+    height: 500px;
+    background: radial-gradient(rgba(255,0,204,1), rgba(255,0,204,0));
+    width: 500px;
+    position: absolute;
+    top: 100px;
+    right: 300px;
+    opacity: 0.6;
+    border-radius: 250px;"></span>
+    <span class="rssi" style="
+    height: 500px;
+    background: radial-gradient(rgba(255,0,180,1), rgba(255,0,180,0));
+    width: 500px;
+    position: absolute;
+    top: -100px;
+    right: 100px;
+    opacity: 0.6;
+    border-radius: 250px;"></span>
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+$('#btn-show-rssi').click(function(){
+	$('.rssi').show();
+});
+$('#btn-hide-rssi').click(function(){
+	$('.rssi').hide();
+});
+	$('.landmark-selection').click(function(){
+		var id = $(this).attr("landmark-id");
+		console.log(id);
+		$('.landmark').removeClass("glyphicon-plus");
+		$('.landmark').removeClass("bulb-flow");
+		$('.landmark').addClass("glyphicon-plus");
+		$('#'+id).removeClass("glyphicon-plus");
+		$('#'+id).addClass("bulb-flow");
+	});
+</script>
+{% endblock %}
+{% block style %}
+<style type="text/css">
+.bulb-flow{
+	position: absolute;
+top: 100px;
+left: 100px;
+color: gold;
+background-image: url(/static/images/bulb_map.png);
+width: 300px;
+height: 300px;
+margin-left: -150px;
+margin-top: -150px;
+background-size: 300px 300px;
+background-repeat: no-repeat;
+opacity: 0.7;
+}
+</style>
+{% endblock %}

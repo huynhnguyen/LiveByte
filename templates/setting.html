@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+{% block sidebar %}
+<ul class="nav nav-sidebar">
+	<li><a href="/">Overview</a></li>
+	<li><a href="/maps">Map</a></li>
+	<li><a href="/analytics">Analytics</a></li>
+	<li class="active"><a href="/setting">Setting</a></li>
+	<li><a href="/about">About us</a></li>
+</ul>
+{% endblock %}
+{% block dashboard %}
+<div style="padding-bottom:20px">
+	<div class="btn-group">
+		<button type="button" class="btn btn-default">
+			<span class="glyphicon glyphicon-plus"></span>
+			Add new
+		</button>
+		<button type="button" class="btn btn-default">
+			<span class="glyphicon glyphicon-wrench"></span>
+			configure
+		</button>
+	</div>
+</div>
+<div class="bulb-list">
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Bulbs name</th>
+					<th>Location</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class = "bulb">
+					<td>Sample bulb</td>
+					<td>Not set</td>
+					<td>
+						<span>Broadcasting</span>
+						<button class="btn btn-default pull-right">Setting</button>
+					</td>
+				</tr> 
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+      <h4 class="panel-title">
+      		Cotrol Bulb 1
+      </h4>
+    </div>
+<div class="bulb-setting">
+	<div class="form-inline" style="margin: 10px">
+		<span style="font-size: 14px;">Set the interval for broadcasting beacons</span>
+		<input id="beacon-interval" val="10" type="number" class="form-control" placeholder=""></input>
+		<span style="font-size: 14px;"> x 100 ms</span>
+	</div>
+	<div class="btn-group">
+		<button cmd="checking" class="bulb-cmd btn btn-default">Test bulb</button>
+		<button cmd="broadcasting" class="bulb-cmd btn btn-default">Start broadcasting</button>
+		<button cmd="halt" class="bulb-cmd btn btn-default">Stop broadcasting</button>
+	</div>
+</div>
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+	// $('.bulb-setting').hide();
+	// $('tr.bulb').click(function function_name (argument) {
+	// 	$('.bulb-setting').show();
+	// });
+	$('.bulb-cmd').click(function(){
+		var cmd = $(this).attr('cmd');
+		console.log(cmd);
+		$.getJSON($SCRIPT_ROOT + '/_ajax_bulb_cmd', {
+        cmd: $(this).attr('cmd'),
+        interval: $('#beacon-interval').val(),
+      	}, function(data) {
+        	console.log(data);
+      	});
+      	return false;
+	})
+</script>
+{% endblock %}
+{% block style %}
+<style type="text/css">
+	.bulb-setting{
+		margin: 20px;
+	}
+	.bulb:hover{
+		background-color: #ddd;
+	}	
+</style>
+{% endblock %}
