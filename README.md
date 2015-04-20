@@ -9,15 +9,15 @@ LiveByte turns your smart bulbs like Philip Hue or LIFX to your indoor GPS satel
 
 With your phone in your palm, LightByte uses phone camera to detect the bulbs' ID and the distance to the bulbs. By leverage Visble Light Communication (VLC) technologies, each bulb's ID is encoded in form of light colors or light intensive that is invisible with human eye but be recognized by CMOS sensor of camera. The distance between bulbs and phone is estimated using the anger of arrival, the ratio between the size of ojects in the picture and the real size of objects.
 
------------	  (wifi)  -------------------
-[Pi server] <-------> [Phillip Hue Bulbs]
------------			  -------------------
-^^                          ^^
-||                          ||
-||(wifi)                    ||(Visible light communication) 
-||                          ||
-VV                          VV
-[ phone/wearables with camera ]
+\\-----------	  (wifi)  -------------------
+\\[Pi server] <-------> [Phillip Hue Bulbs]
+\\-----------			  -------------------
+\\^^                          ^^
+\\||                          ||
+\\||(wifi)                    ||(Visible light communication) 
+\\||                          ||
+\\VV                          VV
+\\[ phone/wearables with camera ]
 
 This is a demo I made for the Raspherry Pi contest. 
 
