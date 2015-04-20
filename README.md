@@ -19,6 +19,10 @@ With your phone in your palm, LightByte uses phone camera to detect the bulbs' I
 VV                          VV
 [ phone/wearables with camera ]
 
+This is a demo I made for the Raspherry Pi contest. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WG8qRy8FAHE" frameborder="0" allowfullscreen></iframe>
+
 #Why do we use light bulb?
 
 We believe light-based approach is the solution for three core challenges of indoor postitioning, namely, accuracy, robustness and ubiqutous distribution. Unlike wifi-based approach which is suffered with accuracy and robustness caused by the unreliability of wifi signal strength and unlike bluetooth-based approach which requires additional bluetooth broadcasters pre-deployed in the building resulting in huge cost of deploying and maintaining. Light-based approach uses computer vision to provide sub-meter accuracy without suffering from the inconsistence of wifi signal and, as light bulbs are the vital part of any building, it can also be considered as the most ubiquitous solution for indoor localization context.   
