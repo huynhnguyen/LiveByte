@@ -21,7 +21,7 @@ VV                          VV
 
 This is a demo I made for the Raspherry Pi contest. 
 
-[![ScreenShot](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](http://youtu.be/vt5fpE0bzSY)
+[![ScreenShot](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://www.youtube.com/watch?v=WG8qRy8FAHE)
 
 #Why do we use light bulb?
 
